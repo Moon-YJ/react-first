@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+1. Bundler (Webpack : 여러개의 파일들을 구동가능한 상태인 하나의 파일로 묶어주는 기능)
+   리액트에서 번들러가 필요한 이유
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 전통적인 웹페이지 제작은 웹페이지 하나당 한개의 html 파일만 있으면 됨
+- 컴포넌트 단위로 한페이지에서 각 기능별로 구현되야 되는 UI를 JS파일로 나눠놓음
+- 결국 react에서는 하나의 페이지를 만들기 위해서 많은 js파일들이 필요하기 때문에
+- 해당 JS파일들을 하나로 묶어서 빈 HTML파일에 넘겨줘야됨
+- 브라우저는 먼저 빈 HTML을 화면에 로드하고 그 후에 하나의 파일로 압축되어 있는 빌드된 리액트 JS를 읽어서 돔을 출력
 
-## Available Scripts
+2. public (번들러가 관여하지 않는 static한 파일이 모아져 있는 폴더)
 
-In the project directory, you can run:
+- index.html: 실제 브라우저가 구동시 읽을 html파일, 추후 번들링된 리액트 js파일이 해당 index.html파일에 삽입됨
 
-### `npm start`
+3. src (실제 작업할 파일이 있는 폴더, 해당 파일들은 webpack이라는 번들러에 의해서 추후에 가공이 일어나는 폴더)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- App.jsx : 컴포넌트파일 html태그가 아닌 JSX라는 문법체계를 이용해서 가상돔 형태로 UI를 구성하는 실제 작업 파일 (마스터 컴포넌트 파일)
+- index.js : App.jsx에 결합된 여러가지 컴포넌트 파일들을 해석해서 public폴더 안쪽의 index.html안쪽에 연결해주는 역할
