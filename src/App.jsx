@@ -1,8 +1,17 @@
+import Footer from './components/common/Footer';
+import { Header } from './components/common/Header';
+import { Footer2, Header2 } from './components/common/Layout';
+import Visual from './components/main/Visual';
+
 function App() {
 	return (
-		<div className='App'>
-			<h1>Hello</h1>
-		</div>
+		<>
+			<Header />
+			<Header2 />
+			<Visual />
+			<Footer2 />
+			<Footer />
+		</>
 	);
 }
 
@@ -35,4 +44,11 @@ export default App;
 	5. JSX
 		- 리액트에서 전용으로 쓰이는 DOM생성 문법
 		- 원래는 React.createElement()라는 메서드를 이용해서 복잡하게 구성해야하는 로직을 HTML태그를 따라한 친화적인 문법으로 편하게 DOM을 생성하기 위한 리액트만의 문법체계
+*/
+
+/*
+	- export default 컴포넌트 함수
+		: 하나의 파일에서 하나의 컴포넌트 함수를 내보낼때 사용
+	- export 컴포넌트 함수
+		: 하나의 파일에서 여러개의 컴포넌트 함수를 등록해서 선별적으로 내보낼때(중괄호로 import)
 */
