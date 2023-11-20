@@ -1,6 +1,7 @@
 import Footer from './components/common/Footer';
 import { Header } from './components/common/Header';
 import { Footer2, Header2 } from './components/common/Layout';
+import Modal from './components/common/Modal';
 import Visual from './components/main/Visual';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
 			<Visual />
 			<Footer2 />
 			<Footer />
+			<Modal />
 		</>
 	);
 }
