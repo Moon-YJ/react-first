@@ -1,42 +1,7 @@
+import Box from './box/Box';
+
 function App() {
-	console.log('re-render');
-	//해당 경우에는 이벤트 발생시 State의 정보값을 변경하는것이 아닌
-	//일반 변수의 값을 변경하고 있기 때문에
-	//react입장에서는 해당 내용의 변경사항을 중요하게 인식하지 않아서 컴포넌트 재호출(재렌더)하지 않음
-	let num = 0;
-
-	const name = '홍길동';
-	const cl_name = 'wrap';
-
-	const changeButton = (e, txt) => {
-		e.target.innerText = txt + num++;
-	};
-
-	const changeBtn = (e, txt) => {
-		e.target.innerText = txt;
-	};
-
-	/*
-		JSX문 내부 {}안에서 가능한 연산은 제한적
-			- 변수 치환
-			- 조건문 (3항연산자, &&연산자)
-			- 반복문 (map)
-	*/
-
-	// 위와 같이 직접 변수값을 변경해도 화면의 변경은 일어나지만 해당 변경사항은 리액트의 제어에서 벗어난 일반적인 DOM의 구조가 변경되는것 뿐
-	// 굳이 번거롭게 일반 변수가 아닌 State라는 것만 가지고 화면을 제어하도록 강제하는 이유
-
-	return (
-		// 주석 가능
-		<>
-			{/* JSX문 안쪽에서는 주석도 연산이 필요하기 때문에 중괄호 처리 */}
-			<section className={cl_name}>
-				<h1>안녕하세요. 제 이름은 {name}입니다.</h1>
-				<button onClick={(e) => changeBtn(e, 'button2')}>버튼</button>
-				<button onClick={(e) => changeButton(e, 'button')}>버튼</button>
-			</section>
-		</>
-	);
+	return <Box />;
 }
 
 export default App;
