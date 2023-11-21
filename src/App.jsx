@@ -8,8 +8,9 @@ export default function App() {
 			<h1>Color Chart</h1>
 			{colors.map((color, idx) => {
 				// 컴포넌트 호출시 특정값을 key={value} 형태로 컴포넌트내부에 전달 가능 (props)
-				return <Card key={color + idx} colorName={color} index={idx} />;
+				return <Card key={color + idx} colorName={color} index={idx} wid={150} show={'block'} />;
 			})}
+			<Card colorName={'black'} index={4} show={'none'} wid={400} />
 		</>
 	);
 }
