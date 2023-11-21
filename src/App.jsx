@@ -1,18 +1,21 @@
-import Footer from './components/common/Footer';
-import { Header } from './components/common/Header';
-import { Footer2, Header2 } from './components/common/Layout';
-import Modal from './components/common/Modal';
-import Visual from './components/main/Visual';
-
 function App() {
+	const name = '홍길동';
+	const cl_name = 'wrap';
+
+	/*
+		JSX문 내부 {}안에서 가능한 연산은 제한적
+			- 변수 치환
+			- 조건문 (3항연산자, &&연산자)
+			- 반복문 (map)	
+	*/
+
 	return (
+		// 주석 가능
 		<>
-			<Header />
-			<Header2 />
-			<Visual />
-			<Footer2 />
-			<Footer />
-			<Modal />
+			{/* JSX문 안쪽에서는 주석도 연산이 필요하기 때문에 중괄호 처리 */}
+			<section className={cl_name}>
+				<h1>안녕하세요. 제 이름은 {name}입니다.</h1>
+			</section>
 		</>
 	);
 }
