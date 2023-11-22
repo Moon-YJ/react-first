@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import './App.scss';
 
+/*
+	- state 관련 주의사항
+		1. state값 변경시 해당값은 무조건 다음 랜더링 사이클에 반영됨
+		2. 위의 특성상 숫자값을 증가시킬때 후위 증감 연산자 사용하면 안됨(let을 사용하게되므로)
+*/
+
 export default function App() {
-	// state값 변경 순서에 따라 결과화면이 달라지는 경우
-	// 전위연산자, 후위연산자
 	console.log('render');
-	let [Index, setIndex] = useState(0);
+	const [Index, setIndex] = useState(0);
 
 	return (
 		<>
-			{/* 
-				- 후위연산자
-					: setIndex가 실행되는 순간에 0 (해당값의 초기값이 먼저 활용됨 = setIndex(0))
-				- 전위연산자
-					: setIndex가 실행되는 순간에 바로 초기값을 먼저 증가시킨뒤 호출되므로 setIndex(1)
-			*/}
-			<button onClick={() => setIndex(--Index)}>left</button>
-			<button onClick={() => setIndex(++Index)}>right</button>
+			<button onClick={() => setIndex(Index - 1)}>left</button>
+			<button onClick={() => setIndex(Index + 1)}>right</button>
 			<div className='box' style={{ transform: `rotate(${45 * Index}deg)` }}></div>
 		</>
 	);
