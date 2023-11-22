@@ -2,12 +2,29 @@ import { useState } from 'react';
 import Modal from './modal/Modal';
 
 export default function App() {
-	const [Show, setShow] = useState(false);
+	const [Color, setColor] = useState('black');
+	const [IsOpen, setIsOpen] = useState(false);
+	//자주쓰는 패턴 (정보값을 토대로 반복 가상돔 생성)
+	/*	
+		{배열State.map((반복데이서, 순서)=>{
+			return <JSX>{활용할 값}</JSX>
+		})}
+	*/
+	const [DbColors] = useState(['red', 'hotpink', 'aqua', 'orangered', 'violet']);
 
 	return (
 		<>
-			<button onClick={() => setShow(!Show)}>{Show ? '팝업닫기' : '팝업열기'}</button>
-			{Show && <Modal />}
+			{DbColors.map((dbColor, idx) => {
+				return (
+					<button key={dbColor + idx} onClick={(e) => setColor(dbColor)}>
+						{dbColor}
+					</button>
+				);
+			})}
+			<button onClick={() => setColor('hotpink')}>제목 글자색 변경</button>
+			<h1 style={{ color: Color }}>부모 컴포넌트</h1>
+			<button onClick={() => setIsOpen(!IsOpen)}>{IsOpen ? '모달닫기' : '모달열기'}</button>
+			{IsOpen && <Modal />}
 		</>
 	);
 }
