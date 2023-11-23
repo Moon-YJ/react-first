@@ -4,25 +4,20 @@ import './App.scss';
 export default function App() {
 	const num = useRef(0);
 	const box = useRef(null);
+	const rotation = (count) => {
+		box.current.style.transform = `rotate(${45 * count}deg)`;
+	};
 
 	return (
 		<>
 			<button
 				onClick={() => {
-					num.current--;
-					box.current.style.transform = `rotate(${45 * num.current}deg)`;
+					rotation(--num.current);
 				}}
 			>
 				left
 			</button>
-			<button
-				onClick={() => {
-					num.current++;
-					box.current.style.transform = `rotate(${45 * num.current}deg)`;
-				}}
-			>
-				right
-			</button>
+			<button onClick={() => rotation(++num.current)}>right</button>
 			<div ref={box} className='box'></div>
 		</>
 	);
@@ -42,8 +37,21 @@ export default function App() {
 		: 화면의 정보를 담당하는 중요한 정보값이 단지 모션을 위한 수치값같은 덜 중요한 값들은 참조객체로 관리하는것이 효율적
 
 	- 사례2에 대한 설명
-		: 리액트에서 realDOM을 직접 가져와서 이벤트 연결해야하는 경우
+		: 리액트에서 어쩔 수 없이 realDOM을 직접 가져와서 이벤트 연결해야하는 경우
 		: 스크롤 모션 이벤트 input요소에 포커스 연결 이벤트
 		: document.querySelector는 리액트의 제어에서 벗어난 이전 랜더링 사이클에서 생성된 과거 신뢰할 수 없는 DOM을 참조
 		: 따라서 useRef를 통해 참조객체에 담겨있는 realDOM은 리액트에서 관리하는 신뢰할 수 있는 최신 상태의 realDOM을 참조
+*/
+
+/*
+	- useRef값은 state와달리 값이 변경시 다음번 렌더링 싸이클로 넘어가는 경우가 아니기 때문에
+	- 다음의 코드에서 볼수 있듯이 전위, 후위에 따른 결과값 차이가 발생하지 않음
+	- 전위증감 연산자인 경우
+		// ++num.current;
+		// num.current = num.current +1;
+
+	- 후위증감 연산자인 경우
+		// num.current++;
+		// num.current = num.current;
+		// num.current = num.current + 1;
 */
