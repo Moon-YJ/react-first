@@ -1,5 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import './App.scss';
+
+/*
+	- useRef에서 알아야 되는 사항 핵심정리
+		: DOM참조객체에 담는법
+			1-1. const 변수명 = useRef(null); 돔을 담을 빈 참조객체 생성
+			1-2. <div ref={변수명}></div>; 원하는 요소에 참조객체 연결
+			1-3. 변수명.current.style~; 참조객체에 담겨있는 돔 호출
+
+		: 모션작업시 화면 재랜더링하지 않으면서 수치값 변경하는 방법
+			2-1. const num = useRef(초기수치);
+			2-2. num.current = 변경할 수치값
+*/
+
+// useRef는 해당 랜더링 사이클에 바로 변경사항 반영
+// state는 다음번 랜더링 사이클에 변경사항 반영
 
 export default function App() {
 	const num = useRef(0);
@@ -8,23 +23,31 @@ export default function App() {
 		box.current.style.transform = `rotate(${45 * count}deg)`;
 	};
 
+	const num1 = useRef(0);
+	const [Num2, setNum2] = useState(0);
+	const handleClick = () => {
+		num1.current++;
+		setNum2(Num2 + 1);
+
+		console.log('num1', num1.current);
+		console.log('Num2', Num2);
+	};
+
 	return (
 		<>
-			<button
-				onClick={() => {
-					rotation(--num.current);
-				}}
-			>
-				left
-			</button>
+			<button onClick={() => rotation(--num.current)}>left</button>
 			<button onClick={() => rotation(++num.current)}>right</button>
 			<div ref={box} className='box'></div>
+
+			<button onClick={handleClick}>Test 버튼</button>
 		</>
 	);
 }
 
 /*
-	- state: 해당 값이 변경되면 무조건 컴포넌트 재랜더링됨, 이전 랜더링 사이클값 유지됨
+	- state
+		: 해당 값이 변경되면 무조건 컴포넌트 재랜더링됨, 이전 랜더링 사이클값 유지됨
+		: 다음번 랜더링 사이클에 변경된 값이 반영됨
 	
 	- useRef
 		: 리액트 내부적으로 기억할 수 있는 값을 담기 위한 참조객체 생성 함수
